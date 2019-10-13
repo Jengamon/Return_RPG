@@ -1,0 +1,13 @@
+x = 3
+y = "some text to behold with \n common \n escape \n sequences"
+
+z = :repeat_text y x
+:show_message z
+
+if x > 2 then {
+    :show_message "Hello"
+    :show_message :format "Meet you {}" 1
+}
+
+// :<text> is a command name.
+// commands are greedy and will take as many arguments as available, unless contained by a set of parentheses.
