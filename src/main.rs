@@ -67,8 +67,6 @@ impl<'a> System<'a> for PhysicsSystem {
                 // Sync our position with the position of our shape.
                 let shape = space.shape_mut(aabb.shape_index.unwrap());
                 if let Some(mut shape) = shape {
-//                    *shape.x_mut() = pos.position.x;
-//                    *shape.y_mut() = pos.position.y;
                     pos.position.x = shape.x();
                     pos.position.y = shape.y();
                 }
@@ -84,15 +82,11 @@ impl<'a> System<'a> for PhysicsSystem {
                 for coll in space.check_collisions(si) {
                     let oe = self.shape_index_mapping.get(&coll.shape_b).unwrap();
                     let mpv = Vector2::new(coll.resolve_x, coll.resolve_y);
-//                    if mpv.magnitude() > 1.0 {
-//                        println!("{:?}", mpv);
-//                    }
                     pos.position += mpv;
                     let shape = space.shape_mut(si).unwrap();
                     *shape.x_mut() = pos.position.x;
                     *shape.y_mut() = pos.position.y;
                     normal += mpv.normalize();
-                    //println!("{:?}", coll);
                     // If we wanted too support pushing, how...
                 }
             }
@@ -164,7 +158,6 @@ impl<'a> System<'a> for InputSystem {
     fn run(&mut self, data: Self::SystemData) {
         let (controller, inputs, mut vels) = data;
 
-//        println!("{:?}", controller.deref());
         let speed = if controller.l_bumper {40.0} else {10.5};
         for(input, vel) in (&inputs, &mut vels).join() {
             let move_vector = Vector2::new(controller.l_x_axis, controller.l_y_axis);
