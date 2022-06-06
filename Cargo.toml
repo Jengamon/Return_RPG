@@ -10,4 +10,4 @@ edition = "2018"
 raylib = { git = "https://github.com/deltaphc/raylib-rs", branch = "master" }
 cgmath = "0.17.0"
 specs = {version  = "0.15.1", features = ["specs-derive", "parallel"]}
-image = "0.22.3"
+image = "0.23.12"
